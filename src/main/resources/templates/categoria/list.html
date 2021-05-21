@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://unpkg.com/shards-ui@latest/dist/css/shards.min.css">
+</head>
+<body>
+<div class="container my-5">
+    <h3>Lista de Categorias</h3>
+    <div class="row">
+            <div class="col-md-6">
+                <!-- Se vier uma mensagem de sucesso vou exibir aqui -->
+                <div class="alert alert-success" th:if="${!#strings.isEmpty(sucesso)}">
+                    <i class="fa fa-check-circle"></i>
+                    <span th:text="${sucesso}">Mensagem de Sucesso</span>
+                </div>
+                <!-- Se vier uma mensagem de erro vou exibir aqui -->
+                <div class="alert alert-danger" th:if="${!#strings.isEmpty(erro)}">
+                    <i class="fa fa-trash"></i>
+                    <span th:text="${erro}">Mensagem de erro</span>
+                </div>
+            </div>
+    </div> <!-- FIM DIV ROW -->
+    <a class="btn btn-primary" th:href="@{/}">
+        <i class="fa fa-home"></i> Home
+    </a> &nbsp;&nbsp;
+
+    <a class="btn btn-primary" th:href="@{/categoria/new}">
+        <i class="fa fa-plus"></i> Novo
+    </a>
+
+    <table class="table table-striped table-resposive-md">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="categoria: ${categorias}">
+                <td th:text="${categoria.id}">0</td>
+                <td th:text="${categoria.nome}">Nome</td>
+                <td>
+                    <a th:href="@{/categoria/{id}(id=${categoria.id})}" class="btn btn-primary">
+                        <i class="fa fa-edit ml-2"></i>
+                    </a>
+                </td>
+                <td>
+                    <form th:method="delete" th:action="@{/categoria/{id}?_method=DELETE(id=${categoria.id})}">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash ml-2"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table><!-- FIM Table -->
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Bootstrap-ecommerce by Vosidiy M.">
+
+<title>Website title - bootstrap html template</title>
+
+<!-- jQuery -->
+<script src="../js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<!-- Fonticons -->
+<link href="../fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+<link href="../fonts/feathericons/css/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="../fonts/material-icons/css/materialdesignicons.css" rel="stylesheet" type="text/css" />
+
+<!-- custom style -->
+<link href="../css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="../css/responsive.css" rel="stylesheet" />
+
+<!-- custom javascript -->
+<script src="../js/script.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+<header class="section-header">
+<section class="header-main border-bottom">
+<div class="container">
+	<a href="/home" class="brand-wrap"><img class="logo" src="../images/logo.png"></a>
+</div> <!-- container.// -->
+</section>
+</header> <!-- section-header.// -->
+
+
+<section class="section-content padding-y bg">
+<div class="container">
+
+<!-- =========================  COMPONENT MYORDER 1 ========================= --> 
+<div class="row">
+	<aside class="col-md-3">
+		<!--   SIDEBAR   -->
+		<ul class="list-group">
+			<a class="list-group-item active" href="#"> My order history </a>
+			<a class="list-group-item" href="#"> Transactions </a>
+			<a class="list-group-item" href="#"> Return and refunds </a>
+			<a class="list-group-item" href="#">Settings </a>
+			<a class="list-group-item" href="#"> My Selling Items </a>
+			<a class="list-group-item" href="#"> Received orders </a>
+		</ul>
+		<br>
+		<a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+		<!--   SIDEBAR .//END   -->
+	</aside>
+	<main class="col-md-9">
+		<article th:each="pedido: ${pedido}" class="card">
+		<header class="card-header">
+			<strong>ID do Pedido: </strong><strong class="d-inline-block mr-3" th:text="${pedido.id}"></strong>
+			<span>Data do pedido: </span><span th:text="${pedido.datapedido}"></span>
+		</header>
+		<div class="card-body">
+			<div class="row"> 
+				<div class="col-md-8">
+					<h6 class="text-muted">Entrega para:</h6>
+					<p th:text="'Nome: ' + ${usuario.nome}" ></p><br>
+					<p th:text="'Telefone: ' + ${usuario.telefone}" ></p><br>
+					<p th:text="'Email: ' + ${usuario.username}" ></p><br>
+					<p th:text="'Localização: ' + ${usuario.endereco}" ></p>
+			 		</p>
+				</div>
+				<div class="col-md-4">
+					<h6 class="text-muted">Pagamento</h6>
+					<p th:text="'Forma de pagamento: ' + ${pedido.tipofrete}" ></p>
+					<p th:text="'Forma de entrega: ' + ${pedido.tipopagamento}" ></p>
+					<p th:text="'Total do pedido: ' + ${pedido.valortotal}" ></p>
+<!--					<p>Valor total:<p th:text="${pedido.valortotal}"></p><br>-->
+<!--					<p>Subtotal:<p th:text="${pedido.valortotal}"></p><br>-->
+<!--					 <span class="b">Total: </span><span th:text="${pedido.valortotal}"></span>-->
+					</p>
+				</div>
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+<!-- =========================  COMPONENT MYORDER 1 END.// ========================= -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+
+
+</body>
+</html>
